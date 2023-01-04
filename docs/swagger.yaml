@@ -1,0 +1,195 @@
+basePath: /api/v1
+definitions:
+  controllers.CreateUserInput:
+    properties:
+      email:
+        type: string
+      firsName:
+        type: string
+      lastName:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      userStatus:
+        type: integer
+      username:
+        type: string
+    required:
+    - email
+    - firsName
+    - lastName
+    - password
+    - phone
+    - username
+    type: object
+  controllers.UpdateUserInput:
+    properties:
+      email:
+        type: string
+      firsName:
+        type: string
+      lastName:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      userStatus:
+        type: integer
+      username:
+        type: string
+    type: object
+  models.User:
+    properties:
+      email:
+        type: string
+      firsName:
+        type: string
+      id:
+        type: integer
+      lastName:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      userStatus:
+        type: integer
+      username:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: This is a demo server
+  title: Swagger Ascan Finals API
+paths:
+  /user:
+    get:
+      consumes:
+      - application/json
+      description: Get all the existing users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.User'
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+      summary: List existing users
+    post:
+      description: creates an User
+      parameters:
+      - description: User
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.CreateUserInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Creates a account
+  /user/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Delete an User
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.User'
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+      summary: Eliminates an User
+    patch:
+      description: Updates an User
+      parameters:
+      - description: User
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.UpdateUserInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: updates a User
+    put:
+      description: Updates an User
+      parameters:
+      - description: User
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.UpdateUserInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: updates a User
+  /user/createWithArray:
+    post:
+      description: creates an array of Users
+      parameters:
+      - description: User
+        in: body
+        name: request
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/controllers.CreateUserInput'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.User'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Creates an array of users
+swagger: "2.0"

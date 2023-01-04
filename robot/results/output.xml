@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.8 on win32)" generated="20221220 14:00:49.776" rpa="false" schemaversion="3">
+<suite id="s1" name="ascanApi tests" source="C:\Users\vithor_vilas\Documents\GOworkspace\src\github.com\GO_Projects\ascan-finals\robot\ascanApi_tests.robot">
+<kw name="Connect to API" library="ascanApi_resource" type="SETUP">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>api</arg>
+<arg>${URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20221220 14:00:49.886" level="INFO">Creating Session using : alias=api, url=http://localhost:8080, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20221220 14:00:49.886" endtime="20221220 14:00:49.887"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${HEADERS}</var>
+<arg>content-type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221220 14:00:49.887" level="INFO">${HEADERS} = {'content-type': 'application/json'}</msg>
+<status status="PASS" starttime="20221220 14:00:49.887" endtime="20221220 14:00:49.887"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${HEADERS}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20221220 14:00:49.887" level="INFO">${HEADERS} = {'content-type': 'application/json'}</msg>
+<status status="PASS" starttime="20221220 14:00:49.887" endtime="20221220 14:00:49.887"/>
+</kw>
+<status status="PASS" starttime="20221220 14:00:49.886" endtime="20221220 14:00:49.887"/>
+</kw>
+<test id="s1-t1" name="GET all the users" line="12">
+<kw name="Get Request: All the users" library="ascanApi_resource">
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${ANSWER}</var>
+<arg>api</arg>
+<arg>/user</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20221220 14:00:49.899" level="INFO">GET Request : url=http://localhost:8080/user 
+ path_url=/user 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20221220 14:00:49.899" level="INFO">GET Response : url=http://localhost:8080/user 
+ status=200, reason=OK 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'Date': 'Tue, 20 Dec 2022 17:00:49 GMT', 'Content-Length': '977'} 
+ body={"data":[{"id":3,"username":"david_malan123","firsName":"David","lastName":"Malan","email":"cs50@exemplo.com","password":"This-Is-CS50","phone":"85 98123-5647","userStatus":0},{"id":7,"username":"batman","firsName":"Bruce","lastName":"Wayne","email":"Batmovel@exemplo.com","password":"coringa","phone":"7777-7777","userStatus":0},{"id":6,"username":"vito_santos","firsName":"Vithor","lastName":"Santos","email":"voltando@gmail.com","password":"testando123","phone":"98125-5647","userStatus":1},{"id":8,"username":"isaac_newton","firsName":"Isaac","lastName":"Newton","email":"gravidade@exemplo.com","password":"inercia123","phone":"97654-2543","userStatus":0},{"id":10,"username":"teste","firsName":"teste","lastName":"teste","email":"testando@exemplo.com","password":"testedeAPI","phone":"77777-7777","userStatus":0},{"id":14,"username":"teste","firsName":"teste","lastName":"teste","email":"testando@exemplo.com","password":"testedeAPI","phone":"77777-7777","userStatus":0}]} 
+ </msg>
+<msg timestamp="20221220 14:00:49.899" level="INFO">${ANSWER} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221220 14:00:49.889" endtime="20221220 14:00:49.899"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${ANSWER.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20221220 14:00:49.900" level="INFO">{'data': [{'id': 3, 'username': 'david_malan123', 'firsName': 'David', 'lastName': 'Malan', 'email': 'cs50@exemplo.com', 'password': 'This-Is-CS50', 'phone': '85 98123-5647', 'userStatus': 0}, {'id': 7, 'username': 'batman', 'firsName': 'Bruce', 'lastName': 'Wayne', 'email': 'Batmovel@exemplo.com', 'password': 'coringa', 'phone': '7777-7777', 'userStatus': 0}, {'id': 6, 'username': 'vito_santos', 'firsName': 'Vithor', 'lastName': 'Santos', 'email': 'voltando@gmail.com', 'password': 'testando123', 'phone': '98125-5647', 'userStatus': 1}, {'id': 8, 'username': 'isaac_newton', 'firsName': 'Isaac', 'lastName': 'Newton', 'email': 'gravidade@exemplo.com', 'password': 'inercia123', 'phone': '97654-2543', 'userStatus': 0}, {'id': 10, 'username': 'teste', 'firsName': 'teste', 'lastName': 'teste', 'email': 'testando@exemplo.com', 'password': 'testedeAPI', 'phone': '77777-7777', 'userStatus': 0}, {'id': 14, 'username': 'teste', 'firsName': 'teste', 'lastName': 'teste', 'email': 'testando@exemplo.com', 'password': 'testedeAPI', 'phone': '77777-7777', 'userStatus': 0}]}</msg>
+<status status="PASS" starttime="20221220 14:00:49.899" endtime="20221220 14:00:49.900"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${ANSWER}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221220 14:00:49.901" level="INFO">${ANSWER} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221220 14:00:49.900" endtime="20221220 14:00:49.901"/>
+</kw>
+<status status="PASS" starttime="20221220 14:00:49.888" endtime="20221220 14:00:49.901"/>
+</kw>
+<kw name="Check status_code" library="ascanApi_resource">
+<arg>200</arg>
+<kw name="Should Be Equal As Numbers" library="BuiltIn">
+<arg>${ANSWER.status_code}</arg>
+<arg>${STATUS_CODE}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<msg timestamp="20221220 14:00:49.902" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20221220 14:00:49.901" endtime="20221220 14:00:49.902"/>
+</kw>
+<status status="PASS" starttime="20221220 14:00:49.901" endtime="20221220 14:00:49.902"/>
+</kw>
+<kw name="Check reason" library="ascanApi_resource">
+<arg>OK</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${ANSWER.reason}</arg>
+<arg>${REASON}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 14:00:49.903" endtime="20221220 14:00:49.904"/>
+</kw>
+<status status="PASS" starttime="20221220 14:00:49.903" endtime="20221220 14:00:49.905"/>
+</kw>
+<kw name="Check content is not empty" library="ascanApi_resource">
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${ANSWER.content}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20221220 14:00:49.906" level="INFO">Length is 977</msg>
+<status status="PASS" starttime="20221220 14:00:49.905" endtime="20221220 14:00:49.906"/>
+</kw>
+<status status="PASS" starttime="20221220 14:00:49.905" endtime="20221220 14:00:49.906"/>
+</kw>
+<status status="PASS" starttime="20221220 14:00:49.888" endtime="20221220 14:00:49.906"/>
+</test>
+<test id="s1-t2" name="GET specific user" line="17">
+<kw name="get Request: get user by username &quot;vito_santos&quot;" library="ascanApi_resource" sourcename="Get Request: get user by username &quot;${USERNAME}&quot;">
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${ANSWER}</var>
+<arg>api</arg>
+<arg>/user/${USERNAME}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20221220 14:00:49.912" level="INFO">GET Request : url=http://localhost:8080/user/vito_santos 
+ path_url=/user/vito_santos 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20221220 14:00:49.912" level="INFO">GET Response : url=http://localhost:8080/user/vito_santos 
+ status=200, reason=OK 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'Date': 'Tue, 20 Dec 2022 17:00:49 GMT', 'Content-Length': '172'} 
+ body={"data":{"id":6,"username":"vito_santos","firsName":"Vithor","lastName":"Santos","email":"voltando@gmail.com","password":"testando123","phone":"98125-5647","userStatus":1}} 
+ </msg>
+<msg timestamp="20221220 14:00:49.912" level="INFO">${ANSWER} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221220 14:00:49.908" endtime="20221220 14:00:49.912"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${ANSWER.text}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20221220 14:00:49.913" level="INFO">{"data":{"id":6,"username":"vito_santos","firsName":"Vithor","lastName":"Santos","email":"voltando@gmail.com","password":"testando123","phone":"98125-5647","userStatus":1}}</msg>
+<status status="PASS" starttime="20221220 14:00:49.912" endtime="20221220 14:00:49.913"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${ANSWER}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221220 14:00:49.913" level="INFO">${ANSWER} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221220 14:00:49.913" endtime="20221220 14:00:49.913"/>
+</kw>
+<status status="PASS" starttime="20221220 14:00:49.908" endtime="20221220 14:00:49.914"/>
+</kw>
+<kw name="Check status_code" library="ascanApi_resource">
+<arg>200</arg>
+<kw name="Should Be Equal As Numbers" library="BuiltIn">
+<arg>${ANSWER.status_code}</arg>
+<arg>${STATUS_CODE}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<msg timestamp="20221220 14:00:49.915" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20221220 14:00:49.914" endtime="20221220 14:00:49.915"/>
+</kw>
+<status status="PASS" starttime="20221220 14:00:49.914" endtime="20221220 14:00:49.915"/>
+</kw>
+<kw name="Check reason" library="ascanApi_resource">
+<arg>OK</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${ANSWER.reason}</arg>
+<arg>${REASON}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 14:00:49.916" endtime="20221220 14:00:49.917"/>
+</kw>
+<status status="PASS" starttime="20221220 14:00:49.916" endtime="20221220 14:00:49.917"/>
+</kw>
+<status status="PASS" starttime="20221220 14:00:49.908" endtime="20221220 14:00:49.917"/>
+</test>
+<test id="s1-t3" name="POST create user" line="23">
+<kw name="Post Request: Create user" library="ascanApi_resource">
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${ANSWER}</var>
+<arg>api</arg>
+<arg>/user</arg>
+<arg>data={"id": 100,"username": "teste","firsName": "teste","lastName": "teste","email": "testando@exemplo.com","password": "testedeAPI","phone": "77777-7777","userStatus": 0}</arg>
+<arg>headers=${HEADERS}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20221220 14:00:49.924" level="INFO">POST Request : url=http://localhost:8080/user 
+ path_url=/user 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'content-type': 'application/json', 'Content-Length': '166'} 
+ body={"id": 100,"username": "teste","firsName": "teste","lastName": "teste","email": "testando@exemplo.com","password": "testedeAPI","phone": "77777-7777","userStatus": 0} 
+ </msg>
+<msg timestamp="20221220 14:00:49.924" level="INFO">POST Response : url=http://localhost:8080/user 
+ status=200, reason=OK 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'Date': 'Tue, 20 Dec 2022 17:00:49 GMT', 'Content-Length': '166'} 
+ body={"data":{"id":19,"username":"teste","firsName":"teste","lastName":"teste","email":"testando@exemplo.com","password":"testedeAPI","phone":"77777-7777","userStatus":0}} 
+ </msg>
+<msg timestamp="20221220 14:00:49.924" level="INFO">${ANSWER} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221220 14:00:49.920" endtime="20221220 14:00:49.924"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${ANSWER.text}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20221220 14:00:49.924" level="INFO">{"data":{"id":19,"username":"teste","firsName":"teste","lastName":"teste","email":"testando@exemplo.com","password":"testedeAPI","phone":"77777-7777","userStatus":0}}</msg>
+<status status="PASS" starttime="20221220 14:00:49.924" endtime="20221220 14:00:49.924"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${ANSWER}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221220 14:00:49.925" level="INFO">${ANSWER} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221220 14:00:49.925" endtime="20221220 14:00:49.925"/>
+</kw>
+<status status="PASS" starttime="20221220 14:00:49.920" endtime="20221220 14:00:49.925"/>
+</kw>
+<kw name="Check status_code" library="ascanApi_resource">
+<arg>200</arg>
+<kw name="Should Be Equal As Numbers" library="BuiltIn">
+<arg>${ANSWER.status_code}</arg>
+<arg>${STATUS_CODE}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<msg timestamp="20221220 14:00:49.926" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20221220 14:00:49.926" endtime="20221220 14:00:49.926"/>
+</kw>
+<status status="PASS" starttime="20221220 14:00:49.925" endtime="20221220 14:00:49.926"/>
+</kw>
+<kw name="Check reason" library="ascanApi_resource">
+<arg>OK</arg>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${ANSWER.reason}</arg>
+<arg>${REASON}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 14:00:49.927" endtime="20221220 14:00:49.927"/>
+</kw>
+<status status="PASS" starttime="20221220 14:00:49.926" endtime="20221220 14:00:49.927"/>
+</kw>
+<kw name="Conferir se retorna todos os dados cadastrados do livro &quot;100&quot;" library="ascanApi_resource" sourcename="Conferir se retorna todos os dados cadastrados do livro &quot;${ID_USER}&quot;">
+<kw name="Conferir livro" library="ascanApi_resource">
+<arg>${ID_USER}</arg>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${ANSWER.json()}</arg>
+<arg>Id</arg>
+<arg>${USER_${ID_USER}.ID}</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<msg timestamp="20221220 14:00:49.930" level="FAIL">Dictionary does not contain key 'Id'.</msg>
+<status status="FAIL" starttime="20221220 14:00:49.928" endtime="20221220 14:00:49.930"/>
+</kw>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${ANSWER.json()}</arg>
+<arg>username</arg>
+<arg>${USER_${ID_USER}.Username}</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20221220 14:00:49.930" endtime="20221220 14:00:49.930"/>
+</kw>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${ANSWER.json()}</arg>
+<arg>firstName</arg>
+<arg>${USER_${ID_USER}.FirsName}</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20221220 14:00:49.930" endtime="20221220 14:00:49.930"/>
+</kw>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${ANSWER.json()}</arg>
+<arg>lastName</arg>
+<arg>${USER_${ID_USER}.LastName}</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20221220 14:00:49.930" endtime="20221220 14:00:49.930"/>
+</kw>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${ANSWER.json()}</arg>
+<arg>email</arg>
+<arg>${USER_${ID_USER}.Email}</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20221220 14:00:49.930" endtime="20221220 14:00:49.930"/>
+</kw>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${ANSWER.json()}</arg>
+<arg>password</arg>
+<arg>${USER_${ID_USER}.Password}</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20221220 14:00:49.931" endtime="20221220 14:00:49.931"/>
+</kw>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<arg>${ANSWER.json()}</arg>
+<arg>phone</arg>
+<arg>${USER_${ID_USER}.Phone}</arg>
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<status status="NOT RUN" starttime="20221220 14:00:49.931" endtime="20221220 14:00:49.931"/>
+</kw>
+<status status="FAIL" starttime="20221220 14:00:49.928" endtime="20221220 14:00:49.931"/>
+</kw>
+<status status="FAIL" starttime="20221220 14:00:49.928" endtime="20221220 14:00:49.932"/>
+</kw>
+<status status="FAIL" starttime="20221220 14:00:49.919" endtime="20221220 14:00:49.933">Dictionary does not contain key 'Id'.</status>
+</test>
+<test id="s1-t4" name="PUT update user" line="30">
+<kw name="Update user &quot;${UPDATE_USER}&quot;" library="ascanApi_resource" sourcename="Update user &quot;${USERNAME}&quot;">
+<kw name="PUT On Session" library="RequestsLibrary">
+<var>${ANSWER}</var>
+<arg>api</arg>
+<arg>user/${USERNAME}</arg>
+<arg>data={"id": ${USER_1.ID},"username": "${USER_1.Username}","firstName": "${USER_1.FirsName}","lastName": ${USER_1.LastName},"email": "${USER_1.Email}","password": "${USER_1.Password}", ,"phone": "${USER_1.Phone}, "userStatus": "${USER_1.UserStatus}</arg>
+<arg>headers=${HEADERS}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20221220 14:00:49.944" level="INFO">PUT Request : url=http://localhost:8080/user/teste 
+ path_url=/user/teste 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'content-type': 'application/json', 'Content-Length': '177'} 
+ body={"id": 1,"username": "Isaac_newton123","firstName": "Isaac","lastName": Newton,"email": "gravidade@exemplo.com","password": "inercia123", ,"phone": "97654-2543, "userStatus": "0 
+ </msg>
+<msg timestamp="20221220 14:00:49.944" level="INFO">PUT Response : url=http://localhost:8080/user/teste 
+ status=400, reason=Bad Request 
+ headers={'Date': 'Tue, 20 Dec 2022 17:00:49 GMT', 'Content-Length': '110', 'Content-Type': 'text/plain; charset=utf-8'} 
+ body={"post":{"id":0,"username":"","firsName":"","lastName":"","email":"","password":"","phone":"","userStatus":0}} 
+ </msg>
+<msg timestamp="20221220 14:00:49.944" level="FAIL">HTTPError: 400 Client Error: Bad Request for url: http://localhost:8080/user/teste</msg>
+<status status="FAIL" starttime="20221220 14:00:49.937" endtime="20221220 14:00:49.945"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${ANSWER.text}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20221220 14:00:49.946" endtime="20221220 14:00:49.946"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${ANSWER}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="NOT RUN" starttime="20221220 14:00:49.946" endtime="20221220 14:00:49.946"/>
+</kw>
+<status status="FAIL" starttime="20221220 14:00:49.936" endtime="20221220 14:00:49.946"/>
+</kw>
+<kw name="Check status_code" library="ascanApi_resource">
+<arg>200</arg>
+<status status="NOT RUN" starttime="20221220 14:00:49.947" endtime="20221220 14:00:49.947"/>
+</kw>
+<kw name="Check reason" library="ascanApi_resource">
+<arg>OK</arg>
+<status status="NOT RUN" starttime="20221220 14:00:49.947" endtime="20221220 14:00:49.947"/>
+</kw>
+<kw name="Conferir se retorna todos os dados alterados do livro &quot;${UPDATE_USER}&quot;" library="ascanApi_resource" sourcename="Conferir se retorna todos os dados alterados do livro &quot;${ID_USER}&quot;">
+<status status="NOT RUN" starttime="20221220 14:00:49.947" endtime="20221220 14:00:49.947"/>
+</kw>
+<status status="FAIL" starttime="20221220 14:00:49.934" endtime="20221220 14:00:49.948">HTTPError: 400 Client Error: Bad Request for url: http://localhost:8080/user/teste</status>
+</test>
+<test id="s1-t5" name="DELETE user" line="36">
+<kw name="Delete user &quot;${DELETE_USER_ID}&quot;" library="ascanApi_resource" sourcename="Delete User &quot;${ID_USER}&quot;">
+<kw name="DELETE On Session" library="RequestsLibrary">
+<var>${RESPONSE}</var>
+<arg>api</arg>
+<arg>user/${ID_USER}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<msg timestamp="20221220 14:00:49.953" level="INFO">DELETE Request : url=http://localhost:8080/user/14 
+ path_url=/user/14 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20221220 14:00:49.953" level="INFO">DELETE Response : url=http://localhost:8080/user/14 
+ status=200, reason=OK 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'Date': 'Tue, 20 Dec 2022 17:00:49 GMT', 'Content-Length': '13'} 
+ body={"data":true} 
+ </msg>
+<msg timestamp="20221220 14:00:49.953" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221220 14:00:49.950" endtime="20221220 14:00:49.953"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE.text}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20221220 14:00:49.954" level="INFO">{"data":true}</msg>
+<status status="PASS" starttime="20221220 14:00:49.953" endtime="20221220 14:00:49.954"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20221220 14:00:49.954" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221220 14:00:49.954" endtime="20221220 14:00:49.954"/>
+</kw>
+<status status="PASS" starttime="20221220 14:00:49.950" endtime="20221220 14:00:49.955"/>
+</kw>
+<kw name="Check status_code" library="ascanApi_resource">
+<arg>200</arg>
+<kw name="Should Be Equal As Numbers" library="BuiltIn">
+<arg>${ANSWER.status_code}</arg>
+<arg>${STATUS_CODE}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<msg timestamp="20221220 14:00:49.956" level="FAIL">Resolving variable '${ANSWER.status_code}' failed: Variable '${ANSWER}' not found.</msg>
+<status status="FAIL" starttime="20221220 14:00:49.955" endtime="20221220 14:00:49.956"/>
+</kw>
+<status status="FAIL" starttime="20221220 14:00:49.955" endtime="20221220 14:00:49.957"/>
+</kw>
+<kw name="Check reason" library="ascanApi_resource">
+<arg>OK</arg>
+<status status="NOT RUN" starttime="20221220 14:00:49.957" endtime="20221220 14:00:49.957"/>
+</kw>
+<kw name="Check if &quot;${DELETE_USER_ID}&quot; is empty" library="ascanApi_resource" sourcename="Check if &quot;${ID_USER}&quot; is empty">
+<status status="NOT RUN" starttime="20221220 14:00:49.957" endtime="20221220 14:00:49.957"/>
+</kw>
+<status status="FAIL" starttime="20221220 14:00:49.949" endtime="20221220 14:00:49.958">Resolving variable '${ANSWER.status_code}' failed: Variable '${ANSWER}' not found.</status>
+</test>
+<doc>This is a test suite for testing the API requests functionality</doc>
+<status status="FAIL" starttime="20221220 14:00:49.777" endtime="20221220 14:00:49.959"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="3" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="3" skip="0" id="s1" name="ascanApi tests">ascanApi tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
