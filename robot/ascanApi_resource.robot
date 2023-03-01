@@ -32,7 +32,7 @@ Connect to API
 
 #GET All
 Get Request: All the users
-    ${ANSWER}=    Get on session    api    /user
+    ${ANSWER}    Get on session    api    /user
     log            ${ANSWER.json()}
     Set Test Variable    ${ANSWER}
 

@@ -4,7 +4,7 @@ Resource           ascanApi_resource.robot
 Suite Setup       Connect to API
 
 ***Variables***
-${DELETE_USER_ID}        31
+${DELETE_USER_ID}        35
 ${UPDATE_USER}           10
 
 
@@ -25,13 +25,11 @@ POST create user
     Check status_code    200
     Check reason    OK
     Check content is not empty
-    #Conferir se retorna todos os dados cadastrados do livro "100"
 
 PUT update user
     Update user "${UPDATE_USER}"
     Check status_code    200
     Check reason   OK
-    #Conferir se retorna todos os dados alterados do livro "${UPDATE_USER}"
 
 DELETE user
     Delete user "${DELETE_USER_ID}"
